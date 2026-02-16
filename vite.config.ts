@@ -24,11 +24,11 @@ const browserProjects = isPlaywrightBrowserInstalled
 				extends: './vite.config.ts',
 				test: {
 					name: 'client',
-						browser: {
-							enabled: true,
-							provider: playwright(),
-							instances: [{ browser: 'chromium' as const, headless: true }]
-						},
+					browser: {
+						enabled: true,
+						provider: playwright(),
+						instances: [{ browser: 'chromium' as const, headless: true }]
+					},
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: ['src/lib/server/**']
 				}

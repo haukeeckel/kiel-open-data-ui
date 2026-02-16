@@ -7,18 +7,34 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint": "prettier --check . && eslint .",
+		"lint:fix": "prettier --check . && eslint --fix .",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
 		"test:unit": "vitest --run",
-		"test": "pnpm test:unit && pnpm test:e2e",
 		"test:e2e": "playwright test",
-		"test:unit:browser": "node scripts/run-vitest-browser.mjs"
+		"test": "pnpm test:unit && pnpm test:e2e",
+		"test:unit:browser": "node scripts/run-vitest-browser.mjs",
+		"prepare": "svelte-kit sync || echo ''"
 	},
+	"lint-staged": {
+		"*.{js,ts,svelte,json,css,md}": [
+			"prettier --write"
+		],
+		"*.{js,ts,svelte}": [
+			"eslint --fix"
+		]
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"packageManager": "pnpm@10.28.2",
 	"devDependencies": {
+		"@commitlint/cli": "^20.4.1",
+		"@commitlint/config-conventional": "^20.4.1",
 		"@eslint/compat": "^2.0.2",
 		"@eslint/js": "^9.39.2",
 		"@playwright/test": "^1.58.1",
@@ -31,8 +47,11 @@
 		"@vitest/browser-playwright": "^4.0.18",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-svelte": "^3.14.0",
 		"globals": "^17.3.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
 		"playwright": "^1.58.1",
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.4.1",
@@ -46,5 +65,8 @@
 		"vite-plugin-devtools-json": "^1.0.0",
 		"vitest": "^4.0.18",
 		"vitest-browser-svelte": "^2.0.2"
+	},
+	"dependencies": {
+		"zod": "^4.3.6"
 	}
 }
