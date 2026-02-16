@@ -33,7 +33,7 @@ jobs:
         run: pnpm typecheck
 
       - name: Unit tests
-        run: pnpm test
+        run: pnpm test:unit
 
   e2e:
     runs-on: ubuntu-latest
