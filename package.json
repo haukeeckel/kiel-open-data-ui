@@ -18,7 +18,7 @@
 		"test:e2e": "playwright test",
 		"test": "pnpm test:unit && pnpm test:e2e",
 		"test:unit:browser": "node scripts/run-vitest-browser.mjs",
-		"prepare": "svelte-kit sync || echo ''"
+		"prepare": "husky && svelte-kit sync || echo ''"
 	},
 	"lint-staged": {
 		"*.{js,ts,svelte,json,css,md}": [
